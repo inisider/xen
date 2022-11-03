@@ -5,6 +5,10 @@
 
 extern domid_t max_init_domid;
 
+paddr_t next_module(paddr_t s, paddr_t *end);
+void fw_unreserved_regions(paddr_t s, paddr_t e,
+                           void (*cb)(paddr_t, paddr_t), int first);
+
 #define NR_VCPUS 2
 
 /* Devices */

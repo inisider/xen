@@ -170,11 +170,6 @@ static void __init setup_memory_region(paddr_t bank_start, paddr_t bank_end)
     paddr_t bank_size = bank_end - bank_start;
     paddr_t s, e;
 
-    /* common/bootfdt.c */
-    paddr_t __init next_module(paddr_t s, paddr_t *end);
-    void __init fw_unreserved_regions(paddr_t s, paddr_t e,
-                                      void (*cb)(paddr_t, paddr_t), int first);
-
     setup_xenheap_mappings(bank_start>>PAGE_SHIFT, bank_size>>PAGE_SHIFT);
 
     s = bank_start;

@@ -1,6 +1,11 @@
 ########################################
 # RISCV-specific definitions
 
+$(call cc-options-add,CFLAGS,CC,$(EMBEDDED_EXTRA_CFLAGS))
+$(call cc-option-add,CFLAGS,CC,-Wnested-externs)
+$(call cc-option-add,CFLAGS,CC,-mstrict-align)
+$(call cc-option-add,CFLAGS,CC,-mtune=size)
+
 CFLAGS-$(CONFIG_RISCV_64) += -mabi=lp64
 
 riscv-march-$(CONFIG_RISCV_ISA_RV64IMA) := rv64ima

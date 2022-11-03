@@ -8,11 +8,6 @@
 
 CFLAGS += -I$(BASEDIR)/include
 
-$(call cc-options-add,CFLAGS,CC,$(EMBEDDED_EXTRA_CFLAGS))
-$(call cc-option-add,CFLAGS,CC,-Wnested-externs)
-$(call cc-option-add,CFLAGS,CC,-mstrict-align)
-$(call cc-option-add,CFLAGS,CC,-mtune=size)
-
 EARLY_PRINTK := n
 
 ifeq ($(CONFIG_DEBUG),y)
