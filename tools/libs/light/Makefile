@@ -54,6 +54,9 @@ SRCS-$(CONFIG_X86) += libxl_x86_acpi.c
 SRCS-$(CONFIG_ARM) += libxl_nocpuid.c
 SRCS-$(CONFIG_ARM) += libxl_arm.c
 SRCS-$(CONFIG_ARM) += libxl_libfdt_compat.c
+SRCS-$(CONFIG_RISCV) += libxl_nocpuid.c
+SRCS-$(CONFIG_RISCV) += libxl_riscv.c
+SRCS-$(CONFIG_RISCV) += libxl_libfdt_compat.c
 ifeq ($(CONFIG_ARM_64),y)
 DSDT_FILES-y = dsdt_anycpu_arm.c
 SRCS-y += libxl_arm_acpi.c
@@ -171,6 +174,7 @@ LDUSELIBS-$(CONFIG_LIBNL) += $(LIBNL3_LIBS)
 LDUSELIBS-$(CONFIG_Linux) += -luuid
 LDUSELIBS-$(CONFIG_Linux) += -lrt
 LDUSELIBS-$(CONFIG_ARM) += -lfdt
+LDUSELIBS-$(CONFIG_RISCV) += -lfdt
 LDUSELIBS-y += $(PTHREAD_LIBS)
 LDUSELIBS-y += -lyajl
 LDUSELIBS += $(LDUSELIBS-y)
