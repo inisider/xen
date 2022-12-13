@@ -27,8 +27,6 @@
 
 #define XC_WANT_COMPAT_MAP_FOREIGN_API
 #include <xenctrl.h>
-#include <xen/foreign/x86_32.h>
-#include <xen/foreign/x86_64.h>
 #include <xen/hvm/save.h>
 
 #define DEFAULT_NR_STACK_PAGES 1
@@ -65,6 +63,12 @@ typedef uint64_t guest_word_t;
 #elif defined(__aarch64__)
 #define NO_TRANSLATION
 typedef uint64_t guest_word_t;
+#define FMT_16B_WORD "%04llx"
+#define FMT_32B_WORD "%08llx"
+#define FMT_64B_WORD "%016llx"
+#elif defined(__riscv)
+#define NO_TRANSLATION
+typedef unsigned long long guest_word_t;
 #define FMT_16B_WORD "%04llx"
 #define FMT_32B_WORD "%08llx"
 #define FMT_64B_WORD "%016llx"
@@ -111,6 +115,9 @@ unsigned long long kernel_end = 0xffffffffULL;
 unsigned long long kernel_start = 0xffffffff80000000UL;
 unsigned long long kernel_end = 0xffffffffffffffffUL;
 #elif defined (__aarch64__)
+unsigned long long kernel_start = 0xffffff8000000000UL;
+unsigned long long kernel_end = 0xffffffffffffffffULL;
+#elif defined (__riscv)
 unsigned long long kernel_start = 0xffffff8000000000UL;
 unsigned long long kernel_end = 0xffffffffffffffffULL;
 #endif
@@ -682,7 +689,12 @@ static void print_ctx(vcpu_guest_context_any_t *ctx_any)
     printf("TTBR0: %016"PRIx64"\n", ctx->ttbr0);
     printf("TTBR1: %016"PRIx64"\n", ctx->ttbr1);
 }
-
+#elif defined(__riscv)
+static void print_ctx(vcpu_guest_context_any_t *ctx_any)
+{
+    printf("TODO: add implementation %s\n", __func__);
+    print_symbol(0x0, KERNEL_TEXT_ADDR);
+}
 #endif
 
 #ifndef NO_TRANSLATION
