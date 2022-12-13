@@ -50,6 +50,9 @@
 #define START_PFN (GUEST_RAM0_BASE >> 12)
 #elif defined(__i386__) || defined(__x86_64__)
 #define START_PFN 0ULL
+#elif defined(__riscv)
+// TODO: figure out about START_PFN
+#define START_PFN 0ULL
 #endif
 
 #define DPRINTF(a, b...) fprintf(stderr, a, ## b)
