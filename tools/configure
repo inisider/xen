@@ -7870,7 +7870,7 @@ fi
 if ! $rump; then
 
 case "$host_cpu" in
-i[3456]86|x86_64|aarch64)
+i[3456]86|x86_64|aarch64|riscv64)
     # Extract the first word of "iasl", so it can be a program name with args.
 set dummy iasl; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
@@ -9246,9 +9246,9 @@ fi
 
 
 
-# FDT is needed only on ARM
+# FDT is needed only on ARM/RISCV64
 case "$host_cpu" in
-arm*|aarch64)
+arm*|aarch64|riscv64)
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for fdt_create in -lfdt" >&5
 $as_echo_n "checking for fdt_create in -lfdt... " >&6; }
 if ${ac_cv_lib_fdt_fdt_create+:} false; then :

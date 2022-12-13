@@ -371,7 +371,7 @@ dnl "host" here means the platform on which the hypervisor and tools is
 dnl going to run, not the platform on which we are building (known as
 dnl "build" in gnu speak).
 case "$host_cpu" in
-i[[3456]]86|x86_64|aarch64)
+i[[3456]]86|x86_64|aarch64|riscv64)
     AX_PATH_PROG_OR_FAIL([IASL], [iasl])
     ;;
 esac
@@ -426,7 +426,7 @@ AC_SUBST(argp_ldflags)
 
 # FDT is needed only on ARM
 case "$host_cpu" in
-arm*|aarch64)
+arm*|aarch64|riscv64)
 AC_CHECK_LIB([fdt], [fdt_create], [], [AC_MSG_ERROR([Could not find libfdt])])
 
 # Check for libfdt >= 1.4.0. If present enable passthrough
