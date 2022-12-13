@@ -426,7 +426,7 @@ static inline int xc_core_arch_auto_translated_physmap(const xc_dominfo_t *info)
 {
     return info->hvm;
 }
-#elif defined (__arm__) || defined(__aarch64__)
+#elif defined (__arm__) || defined(__aarch64__) || defined(__riscv)
 static inline int xc_core_arch_auto_translated_physmap(const xc_dominfo_t *info)
 {
     return 1;
