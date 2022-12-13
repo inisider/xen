@@ -27,6 +27,7 @@ endif
 SRCS-y       += xg_core.c
 SRCS-$(CONFIG_X86) += xg_core_x86.c
 SRCS-$(CONFIG_ARM) += xg_core_arm.c
+SRCS-$(CONFIG_RISCV) += xg_core_riscv.c
 
 CFLAGS += -I$(XEN_libxenctrl)
 
@@ -61,6 +62,7 @@ SRCS-y                 += xg_dom_compat_linux.c
 SRCS-$(CONFIG_X86)     += xg_dom_x86.c
 SRCS-$(CONFIG_X86)     += xg_cpuid_x86.c
 SRCS-$(CONFIG_ARM)     += xg_dom_arm.c
+SRCS-$(CONFIG_RISCV)	+= xg_dom_riscv.c
 
 ifeq ($(CONFIG_LIBXC_MINIOS),y)
 SRCS-y                 += xg_dom_decompress_unsafe.c

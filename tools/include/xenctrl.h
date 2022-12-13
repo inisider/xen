@@ -83,6 +83,14 @@
 #define xen_mb()   asm volatile ("dmb sy" : : : "memory")
 #define xen_rmb()  asm volatile ("dmb sy" : : : "memory")
 #define xen_wmb()  asm volatile ("dmb sy" : : : "memory")
+#elif defined(__riscv)
+#define RISCV_FENCE(p, s) \
+    __asm__ __volatile__ ("fence " #p "," #s : : : "memory")
+
+/* These barriers need to enforce ordering on both devices or memory. */
+#define xen_mb()	RISCV_FENCE(iorw,iorw)
+#define xen_rmb()	RISCV_FENCE(ir,ir)
+#define xen_wmb()	RISCV_FENCE(ow,ow)
 #else
 #error "Define barriers"
 #endif

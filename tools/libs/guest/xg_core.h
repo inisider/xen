@@ -154,6 +154,8 @@ int xc_core_arch_get_scratch_gpfn(xc_interface *xch, uint32_t domid,
 # include "xg_core_x86.h"
 #elif defined (__arm__) || defined(__aarch64__)
 # include "xg_core_arm.h"
+#elif defined (__riscv)
+# include "xg_core_riscv.h"
 #else
 # error "unsupported architecture"
 #endif
