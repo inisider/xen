@@ -160,6 +160,8 @@ static PyObject *pyxc_domain_create(XcObject *self,
         config.arch.emulation_flags = (XEN_X86_EMU_ALL & ~XEN_X86_EMU_VPCI);
 #elif defined (__arm__) || defined(__aarch64__)
     config.arch.gic_version = XEN_DOMCTL_CONFIG_GIC_NATIVE;
+#elif defined (__riscv)
+    // TODO: add something?
 #else
 #error Architecture not supported
 #endif
